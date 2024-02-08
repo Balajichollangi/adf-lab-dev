@@ -1,0 +1,9 @@
+{
+	"name": "adf-balaji-lab-dev",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "54afce47-3bf3-48df-8684-ea6235f4612d",
+		"tenantId": "6bf6f13a-fac2-4bf4-abfd-df98ad51814f"
+	}
+}
