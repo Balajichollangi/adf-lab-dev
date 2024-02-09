@@ -1,0 +1,23 @@
+{
+	"name": "ds_targetsqltablecopy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sourcetargetcopyfile",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "target",
+				"fileSystem": "balaji"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

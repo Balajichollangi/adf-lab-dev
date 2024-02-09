@@ -1,0 +1,12 @@
+{
+	"name": "ds_lookupformultipletables",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuresqlserver",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
