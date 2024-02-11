@@ -1,0 +1,24 @@
+{
+	"name": "ds_azsqlmultiple_filessource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azsql",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().tablename",
+				"type": "Expression"
+			}
+		}
+	}
+}
