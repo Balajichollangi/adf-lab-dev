@@ -1,0 +1,19 @@
+{
+	"name": "azsql_to_adls_multiplefilescopypaste_dynamicparameters",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": []
+			}
+		],
+		"parameters": {
+			"tablelist": {
+				"type": "array"
+			}
+		},
+		"annotations": []
+	}
+}
