@@ -5,14 +5,6 @@
 			"referenceName": "ls_adlstoadlscopysourcetarget",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"foldername": {
-				"type": "string"
-			},
-			"filename": {
-				"type": "string"
-			}
-		},
 		"folder": {
 			"name": "lookup_foreach_copysourcetarget_data"
 		},
@@ -21,14 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().filename",
-					"type": "Expression"
-				},
-				"folderPath": {
-					"value": "@dataset().foldername",
-					"type": "Expression"
-				},
+				"folderPath": "azsql_target",
 				"fileSystem": "balaji"
 			},
 			"columnDelimiter": ",",
