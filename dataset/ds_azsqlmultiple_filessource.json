@@ -13,6 +13,9 @@
 				"type": "string"
 			}
 		},
+		"folder": {
+			"name": "lookup_foreach_copysourcetarget_data"
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [],
