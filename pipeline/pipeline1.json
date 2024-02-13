@@ -1,5 +1,5 @@
 {
-	"name": "parameters_variable_copyactivity",
+	"name": "pipeline1",
 	"properties": {
 		"activities": [
 			{
@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@pipeline().parameters.tablelist",
+						"value": "@pipeline().parameters.TableList",
 						"type": "Expression"
 					},
 					"activities": [
@@ -31,59 +31,8 @@
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
-								"sink": {
-									"type": "DelimitedTextSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "DelimitedTextWriteSettings",
-										"quoteAllText": true,
-										"fileExtension": ".txt"
-									}
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "ds_azsqlmultiple_filessource",
-									"type": "DatasetReference",
-									"parameters": {
-										"tablename": {
-											"value": "@item().tableName",
-											"type": "Expression"
-										},
-										"schemaname": {
-											"value": "@item().tableSchemaName",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "ds_parameters_copy_target",
-									"type": "DatasetReference",
-									"parameters": {
-										"directory": {
-											"value": "@item().tableName",
-											"type": "Expression"
-										},
-										"filename": {
-											"value": "@item().tableName",
-											"type": "Expression"
-										}
-									}
-								}
-							]
+								"enableStaging": false
+							}
 						},
 						{
 							"name": "Append variable1",
@@ -98,9 +47,9 @@
 							],
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "appendtablename",
+								"variableName": "TableName_Append",
 								"value": {
-									"value": "@item().tablename",
+									"value": "@item().tableName",
 									"type": "Expression"
 								}
 							}
@@ -122,9 +71,9 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "finaltablelist",
+								"variableName": "FinalTableList",
 								"value": {
-									"value": "@variables('appendtablename')",
+									"value": "@variables('TableName_Append')",
 									"type": "Expression"
 								}
 							}
@@ -134,7 +83,7 @@
 			}
 		],
 		"parameters": {
-			"tablelist": {
+			"TableList": {
 				"type": "array",
 				"defaultValue": [
 					{
@@ -146,17 +95,17 @@
 						"tableSchemaName": "dbo"
 					},
 					{
-						"tableName": "cricket",
+						"tableName": "salesitems",
 						"tableSchemaName": "dbo"
 					}
 				]
 			}
 		},
 		"variables": {
-			"appendtablename": {
+			"TableName_Append": {
 				"type": "Array"
 			},
-			"finaltablelist": {
+			"FinalTableList": {
 				"type": "Array"
 			}
 		},
