@@ -25,6 +25,96 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/setvariable')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Set variable1",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "adfname",
+							"value": {
+								"value": "@pipeline().DataFactory",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Set variable2",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Set variable1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "pipelinename",
+							"value": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Set variable3",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Set variable2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "pipelineid",
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"variables": {
+					"adfname": {
+						"type": "String"
+					},
+					"pipelinename": {
+						"type": "String"
+					},
+					"pipelineid": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ls_adlstoadlscopysourcetarget')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -214,6 +304,154 @@
 					"quoteChar": "\""
 				},
 				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_adlstoadlscopysourcetarget')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_parameters_copy_target')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_adlstoadlscopysourcetarget",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"directory": {
+						"type": "string"
+					},
+					"filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().directory",
+							"type": "Expression"
+						},
+						"fileSystem": "balaji"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "symboling",
+						"type": "String"
+					},
+					{
+						"name": "normalized-losses",
+						"type": "String"
+					},
+					{
+						"name": "make",
+						"type": "String"
+					},
+					{
+						"name": "fuel-type",
+						"type": "String"
+					},
+					{
+						"name": "aspiration",
+						"type": "String"
+					},
+					{
+						"name": "num-of-doors",
+						"type": "String"
+					},
+					{
+						"name": "body-style",
+						"type": "String"
+					},
+					{
+						"name": "drive-wheels",
+						"type": "String"
+					},
+					{
+						"name": "engine-location",
+						"type": "String"
+					},
+					{
+						"name": "wheel-base",
+						"type": "String"
+					},
+					{
+						"name": "length",
+						"type": "String"
+					},
+					{
+						"name": "width",
+						"type": "String"
+					},
+					{
+						"name": "height",
+						"type": "String"
+					},
+					{
+						"name": "curb-weight",
+						"type": "String"
+					},
+					{
+						"name": "engine-type",
+						"type": "String"
+					},
+					{
+						"name": "num-of-cylinders",
+						"type": "String"
+					},
+					{
+						"name": "engine-size",
+						"type": "String"
+					},
+					{
+						"name": "fuel-system",
+						"type": "String"
+					},
+					{
+						"name": "bore",
+						"type": "String"
+					},
+					{
+						"name": "stroke",
+						"type": "String"
+					},
+					{
+						"name": "compression-ratio",
+						"type": "String"
+					},
+					{
+						"name": "horsepower",
+						"type": "String"
+					},
+					{
+						"name": "peak-rpm",
+						"type": "String"
+					},
+					{
+						"name": "city-mpg",
+						"type": "String"
+					},
+					{
+						"name": "highway-mpg",
+						"type": "String"
+					},
+					{
+						"name": "price",
+						"type": "String"
+					}
+				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_adlstoadlscopysourcetarget')]"
@@ -427,6 +665,180 @@
 				"[concat(variables('factoryId'), '/datasets/ds_azsql_source')]",
 				"[concat(variables('factoryId'), '/datasets/ds_azsqlmultiple_filessource')]",
 				"[concat(variables('factoryId'), '/datasets/ds_foreachtarget_adls')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/parameters_variable_copyactivity')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@pipeline().parameters.tablelist",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy data1",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "AzureSqlSource",
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"sink": {
+											"type": "DelimitedTextSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "DelimitedTextWriteSettings",
+												"quoteAllText": true,
+												"fileExtension": ".txt"
+											}
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_azsqlmultiple_filessource",
+											"type": "DatasetReference",
+											"parameters": {
+												"tablename": {
+													"value": "@item().tableName",
+													"type": "Expression"
+												},
+												"schemaname": {
+													"value": "@item().tableSchemaName",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_parameters_copy_target",
+											"type": "DatasetReference",
+											"parameters": {
+												"directory": {
+													"value": "@item().tableName",
+													"type": "Expression"
+												},
+												"filename": {
+													"value": "@item().tableName",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								},
+								{
+									"name": "Append variable1",
+									"type": "AppendVariable",
+									"dependsOn": [
+										{
+											"activity": "Copy data1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "appendtablename",
+										"value": {
+											"value": "@item().tablename",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set variable1",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Append variable1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "finaltablelist",
+										"value": {
+											"value": "@variables('appendtablename')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"tablelist": {
+						"type": "array",
+						"defaultValue": [
+							{
+								"tableName": "iplteams",
+								"tableSchemaName": "dbo"
+							},
+							{
+								"tableName": "employees",
+								"tableSchemaName": "dbo"
+							},
+							{
+								"tableName": "cricket",
+								"tableSchemaName": "dbo"
+							}
+						]
+					}
+				},
+				"variables": {
+					"appendtablename": {
+						"type": "Array"
+					},
+					"finaltablelist": {
+						"type": "Array"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_azsqlmultiple_filessource')]",
+				"[concat(variables('factoryId'), '/datasets/ds_parameters_copy_target')]"
 			]
 		}
 	]
