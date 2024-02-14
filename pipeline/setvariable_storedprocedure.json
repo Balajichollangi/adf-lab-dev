@@ -1,5 +1,5 @@
 {
-	"name": "setvariable",
+	"name": "setvariable_storedprocedure",
 	"properties": {
 		"activities": [
 			{
