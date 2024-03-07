@@ -160,6 +160,9 @@
 				"type": "Array"
 			}
 		},
+		"folder": {
+			"name": "old"
+		},
 		"annotations": []
 	}
 }

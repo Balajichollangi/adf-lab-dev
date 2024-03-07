@@ -14,7 +14,7 @@
 			}
 		},
 		"folder": {
-			"name": "lookup_foreach_copysourcetarget_data"
+			"name": "old/lookup_foreach_copysourcetarget_data"
 		},
 		"annotations": [],
 		"type": "DelimitedText",

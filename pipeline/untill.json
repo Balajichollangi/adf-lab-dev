@@ -123,6 +123,9 @@
 				"defaultValue": "true"
 			}
 		},
+		"folder": {
+			"name": "old"
+		},
 		"annotations": []
 	}
 }

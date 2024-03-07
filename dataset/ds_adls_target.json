@@ -6,15 +6,13 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "lookup_foreach_copysourcetarget_data"
+			"name": "old/lookup_foreach_copysourcetarget_data"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"folderPath": "azsql_target",
-				"fileSystem": "balaji"
+				"type": "AzureBlobFSLocation"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
