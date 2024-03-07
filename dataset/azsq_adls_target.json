@@ -1,0 +1,23 @@
+{
+	"name": "azsq_adls_target",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adlstoadls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "azsql_target",
+				"fileSystem": "balaji"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
