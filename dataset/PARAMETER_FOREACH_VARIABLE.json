@@ -1,0 +1,47 @@
+{
+	"name": "PARAMETER_FOREACH_VARIABLE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "balaji"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "id",
+				"type": "String"
+			},
+			{
+				"name": "name",
+				"type": "String"
+			},
+			{
+				"name": "team",
+				"type": "String"
+			},
+			{
+				"name": "score",
+				"type": "String"
+			},
+			{
+				"name": "matches_played",
+				"type": "String"
+			},
+			{
+				"name": "last_updated",
+				"type": "String"
+			}
+		]
+	}
+}
