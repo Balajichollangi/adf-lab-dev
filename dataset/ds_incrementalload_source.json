@@ -1,0 +1,30 @@
+{
+	"name": "ds_incrementalload_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azsql",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tableSchemaName": {
+				"type": "string"
+			},
+			"tableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().tableSchemaName",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().tableName",
+				"type": "Expression"
+			}
+		}
+	}
+}
