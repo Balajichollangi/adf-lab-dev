@@ -90,8 +90,14 @@
 									"referenceName": "ds_azsqlmultiplesource",
 									"type": "DatasetReference",
 									"parameters": {
-										"schemaname": "TABLE_SCHEMA",
-										"tablename": "TABLE_NAME"
+										"schemaname": {
+											"value": "@item().SCHEMANAME",
+											"type": "Expression"
+										},
+										"tablename": {
+											"value": "@item().TABLENAME",
+											"type": "Expression"
+										}
 									}
 								}
 							],
