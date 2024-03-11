@@ -72,7 +72,7 @@
 									"formatSettings": {
 										"type": "DelimitedTextWriteSettings",
 										"quoteAllText": true,
-										"fileExtension": ".CSV"
+										"fileExtension": ".txt"
 									}
 								},
 								"enableStaging": false,
@@ -87,15 +87,15 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ds_azsqlmultiplesource",
+									"referenceName": "ds_azsql_multiplesource",
 									"type": "DatasetReference",
 									"parameters": {
 										"schemaname": {
-											"value": "@item().SCHEMANAME",
+											"value": "@item().TABLE_SCHEMA",
 											"type": "Expression"
 										},
 										"tablename": {
-											"value": "@item().TABLENAME",
+											"value": "@item().TABLE_NAME",
 											"type": "Expression"
 										}
 									}
