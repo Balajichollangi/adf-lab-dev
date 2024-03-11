@@ -1,0 +1,16 @@
+{
+	"name": "untillsource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azsql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "mastertable"
+		}
+	}
+}
