@@ -1,5 +1,5 @@
 {
-	"name": "parameter_foreach_variable",
+	"name": "parameter_foreach_variable_storedprocedure",
 	"properties": {
 		"activities": [
 			{
