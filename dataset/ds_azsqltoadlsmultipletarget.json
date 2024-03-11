@@ -1,5 +1,5 @@
 {
-	"name": "ds_azsqltoadls_singlefile_target",
+	"name": "ds_azsqltoadlsmultipletarget",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_adls",
@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"folderPath": "azsql_adls_target",
 				"fileSystem": "balaji"
 			},
 			"columnDelimiter": ",",

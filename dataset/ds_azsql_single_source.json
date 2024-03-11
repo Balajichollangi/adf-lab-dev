@@ -1,0 +1,16 @@
+{
+	"name": "ds_azsql_single_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azsql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "cricket"
+		}
+	}
+}
