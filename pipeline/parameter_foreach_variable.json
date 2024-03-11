@@ -8,6 +8,10 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.tablelist",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy data1",
@@ -86,7 +90,7 @@
 							"typeProperties": {
 								"variableName": "appendtablename",
 								"value": {
-									"value": "@item().activity('Copy data1').output",
+									"value": "@item().tableName",
 									"type": "Expression"
 								}
 							}
@@ -109,9 +113,10 @@
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "finaltablelist",
-								"value": [
-									""
-								]
+								"value": {
+									"value": "@variables('appendtablename')",
+									"type": "Expression"
+								}
 							}
 						}
 					]
@@ -120,7 +125,7 @@
 		],
 		"parameters": {
 			"tablelist": {
-				"type": "string",
+				"type": "array",
 				"defaultValue": [
 					{
 						"tableName": "iplteams",
