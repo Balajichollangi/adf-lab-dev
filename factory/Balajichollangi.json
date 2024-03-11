@@ -1,0 +1,9 @@
+{
+	"name": "Balajichollangi",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c2bfd65f-7888-4346-a6af-1f60e28beb55",
+		"tenantId": "761836f7-d9f5-4891-bbab-282be6d72b71"
+	}
+}
