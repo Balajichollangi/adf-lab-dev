@@ -8,10 +8,20 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"expression": {
+						"value": "@variables('status')",
+						"type": "Expression"
+					},
 					"timeout": "0.12:00:00"
 				}
 			}
 		],
+		"variables": {
+			"status": {
+				"type": "String",
+				"defaultValue": "true"
+			}
+		},
 		"annotations": []
 	}
 }
