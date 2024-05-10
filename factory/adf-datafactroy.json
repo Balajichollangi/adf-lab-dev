@@ -1,0 +1,9 @@
+{
+	"name": "adf-datafactroy",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3e822ce3-23a0-4782-953a-5ad16d683620",
+		"tenantId": "a67e9452-d22e-46ad-a746-9d2155431e85"
+	}
+}
