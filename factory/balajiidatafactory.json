@@ -1,0 +1,9 @@
+{
+	"name": "balajiidatafactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2d08bbc5-ed6c-45a3-bcac-877417654d2d",
+		"tenantId": "ed354ebe-d6a6-4769-8daa-cb8cfb83b3c5"
+	}
+}
