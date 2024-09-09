@@ -1,0 +1,32 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "adls_single_file_transfer",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-09-09T11:17:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						18
+					],
+					"hours": [
+						11
+					]
+				}
+			}
+		}
+	}
+}
